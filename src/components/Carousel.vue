@@ -34,9 +34,8 @@
   .marg{
     margin-left: -29px;
     margin-right: -50px;
-    width: 1900px
+    width: 1400px
   }
   .jum{
-    width: 1700px
   }
 </style>

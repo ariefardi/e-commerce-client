@@ -3,7 +3,6 @@
   <div>
       <Navbar/>
       <Carousel style="margin-bottom: 5px !important"/>
-
       <div id="items-wrap">
         <Items class="items1-list"/>
         <Items2 class="items2-list"/>
@@ -23,6 +22,7 @@ import Items3 from '@/components/Items3.vue'
 import Carousel from '@/components/Carousel.vue'
 import CartModal from '@/components/CartModal.vue'
 import Footer from '@/components/Footer.vue'
+import Headerquote from '@/components/Headerquote.vue'
 
 export default {
   
@@ -34,7 +34,8 @@ export default {
       Items2,
       Items3,
       CartModal,
-      Footer
+      Footer,
+      Headerquote
     }
 }
 </script>

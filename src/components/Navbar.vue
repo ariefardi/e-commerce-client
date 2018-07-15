@@ -29,25 +29,6 @@
       </v-btn>
     </v-toolbar-items>
     </v-toolbar>
-    <v-dialog v-model="dialog" scrollable max-width="500px" >
-        <v-container grid-list-md text-xs-center class="cont">
-          <h1>Shopping Cart <v-icon>shopping_cart</v-icon> </h1>
-
-          <v-layout>
-             <v-flex v-for="(item, index) in cart" :key="index" xs12>
-               <v-card color="#607D8B">
-               <v-card-text class="px-0">Item Name : {{item.itemName}} <br/> Jersey World Cup 2018/2019 <br/> 
-               Price : {{item.totalPrice | currency}} 
-               quantity: x{{item.qty}} </v-card-text>
-               <v-card-text> <v-btn @click="incQty(index)" small>+</v-btn> <v-btn @click="decQty(index)" small>-</v-btn> </v-card-text>
-               </v-card>
-             </v-flex>
-
-             <v-card> {{totalInCart | currency}} </v-card>
-          </v-layout>
-          
-        </v-container>
-    </v-dialog>
     </div>
 </template>
 <script>
