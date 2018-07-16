@@ -24,8 +24,8 @@
               </div>
               <div class="price"> {{item.price}} </div>
               <div class="quantity">
-                <p class="quantity-field" style="margin-top:-2%;margin-left:20%" > {{item.qty}} </p>
-                <v-btn small flat icon color="black" @click="incQty(index)"> <v-icon color="black">fa fa-plus</v-icon> </v-btn>
+                <p class="quantity-field" style="margin-top:-2%;margin-left:20%" > {{item.qty}} <v-icon small color="black" style="padding-bot:20%" >fa fa-plus</v-icon> </p>
+                <v-btn small flat icon color="black" @click="incQty(index)"> <v-icon color="black" style="padding-bot:20%" >fa fa-plus</v-icon> </v-btn>
                 <v-btn small flat icon color="black" @click="decQty(index)"> <v-icon color="black">fa fa-minus</v-icon> </v-btn>
               </div>
               <div class="subtotal" > {{item.price*item.qty}} </div>
@@ -37,7 +37,7 @@
           </v-flex>
         </v-container>
         <div v-if="cart.length>0"> 
-          <h2> Total:  ${{totalInCart}} <v-btn flat small color="black">Checkout</v-btn> </h2> 
+          Total:  ${{totalInCart}} <v-btn flat small color="black"> Checkout </v-btn> 
         </div>
         <div v-else >
           <h2 style="text-align:center"> No Item in Shopping Cart </h2>
@@ -96,22 +96,6 @@ h1 {
   padding: 0;
 }
 
-input,
-button {
-  border: 0 none;
-  outline: 0 none;
-}
-
-button {
-  background-color: #666;
-  color: #fff;
-}
-
-button:hover,
-button:focus {
-  background-color: #555;
-}
-
 img,
 .basket-module,
 .basket-labels,
@@ -119,8 +103,6 @@ img,
   width: 100%;
 }
 
-input,
-button,
 .basket,
 .basket-module,
 .basket-labels,
@@ -176,30 +158,6 @@ label {
   margin-bottom: 0.3125rem;
 }
 
-.promo-code-field {
-  border: 1px solid #ccc;
-  padding: 0.5rem;
-  text-transform: uppercase;
-  transition: all 0.2s linear;
-  width: 48%;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  -o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-}
-
-.promo-code-field:hover,
-.promo-code-field:focus {
-  border: 1px solid #999;
-}
-
-.promo-code-cta {
-  border-radius: 4px;
-  font-size: 0.625rem;
-  margin-left: 0.625rem;
-  padding: 0.6875rem 1.25rem 0.625rem;
-}
-
 .basket-labels {
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
@@ -246,13 +204,7 @@ li.subtotal:before {
   width: 45%;
 }
 
-.remove button {
-  background-color: transparent;
-  color: #777;
-  float: none;
-  text-decoration: underline;
-  text-transform: uppercase;
-}
+
 
 .item-heading {
   padding-left: 4.375rem;

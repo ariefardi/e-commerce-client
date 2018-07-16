@@ -11,8 +11,8 @@
                         </div>
                     </div>
                     <div class="middle-btm">
-                        <v-btn @click="addToCart(index)" flat small icon> <v-icon color="grey lighten-1">shopping_cart</v-icon> </v-btn>
-                        <v-btn @click="openDetailDialog(index)" flat small icon > <v-icon color="grey lighten-1" >fa fa-eye</v-icon> </v-btn>
+                        <v-btn @click="addToCart(index)" flat small icon> <p> <v-icon color="grey lighten-1">shopping_cart</v-icon> </p> </v-btn>
+                        <v-btn @click="openDetailDialog(index)" flat small icon > <p> <v-icon color="grey lighten-1" >fa fa-eye</v-icon> </p> </v-btn>
                         <v-btn v-if="loginStatus==true" @click="deleteItem(index)"> <v-icon size="5px">block</v-icon> Delete </v-btn>
                     </div>
                     
