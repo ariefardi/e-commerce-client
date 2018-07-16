@@ -1,6 +1,6 @@
 <template>
     <v-layout row wrap>
-        <v-flex xs12 sm6 md3 order-md4 order-sm2 v-for="(item, index) in items" :key="index" >
+        <v-flex xs12 sm4 md3 order-md4 order-sm2 v-for="(item, index) in items" :key="index" >
             <v-card-media>
                 <div class="container">
                     <img :src="item.imgSrc" alt=""  class="image">
@@ -102,7 +102,7 @@ item-name {
 }
 
 .container:hover .image {
-  opacity: 0.3;
+  opacity: 0.2;
 }
 
 .container:hover .middle {

@@ -1,12 +1,12 @@
 <template>
         <v-layout row wrap>
-            <v-flex xs4 order-md2 order-xs1 v-for="(item, index) in items" :key="index" >
+            <v-flex xs12 sm12 md4 order-md4 order-sm12 v-for="(item, index) in items" :key="index" >
                 <v-card dark tile flat>
                     <v-card-media >
                         <div class="container">
                             <img :src="item.src" class="image">
                             <div class="middle">
-                                <h3>Russia 2018</h3>
+                                <h3 class="text">Russia 2018</h3>
                             </div>
                         </div>
                     </v-card-media>
@@ -36,16 +36,18 @@
 <style scoped>
     .container {
         position: relative;
-        height: 385.77px;
-        width: 400px;
+        padding: 0px
+    }
+    .text {
+        font-weight: 700;
+        font-size: 24px;
     }
     .image {
         opacity: 1;
         display: block;
-        height: 385.77;
-        width: 460px;
         transition: .5s ease;
-        backface-visibility: hidden
+        backface-visibility: hidden;
+        width: 103%;
     }
     .middle {
         transition: .5s ease;
@@ -59,17 +61,12 @@
     }
     .container:hover .image {
         opacity: 0.3;
+        margin-left: 20px
     }
 
     .container:hover .middle {
         opacity: 1;
     }
 
-    .text {
-        background-color: #4CAF50;
-        color: white;
-        font-size: 16px;
-        padding: 16px 32px;
-    }
 
 </style>
