@@ -3,9 +3,11 @@
             <v-flex xs4 order-md2 order-xs1 v-for="(item, index) in items" :key="index" >
                 <v-card dark tile flat>
                     <v-card-media >
-                        <div>
-                            <img :src="item.src" width="100%">
-                             <v-btn> <v-icon color="grey lighten-1">shopping_cart</v-icon>  </v-btn>
+                        <div class="container">
+                            <img :src="item.src" class="image">
+                            <div class="middle">
+                                <h3>Russia 2018</h3>
+                            </div>
                         </div>
                     </v-card-media>
                 </v-card>
@@ -32,5 +34,42 @@
     }
 </script>
 <style scoped>
+    .container {
+        position: relative;
+        height: 385.77px;
+        width: 400px;
+    }
+    .image {
+        opacity: 1;
+        display: block;
+        height: 385.77;
+        width: 460px;
+        transition: .5s ease;
+        backface-visibility: hidden
+    }
+    .middle {
+        transition: .5s ease;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    .container:hover .image {
+        opacity: 0.3;
+    }
+
+    .container:hover .middle {
+        opacity: 1;
+    }
+
+    .text {
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        padding: 16px 32px;
+    }
 
 </style>

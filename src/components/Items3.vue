@@ -4,15 +4,15 @@
             <v-card-media>
                 <div class="container">
                     <img :src="item.imgSrc" alt=""  class="image">
-                    <div class="middletop" >
-                        
-                    </div>
                     <div class="middle">
-                        <div style="top:100%">
-                        <h3> {{item.price}} </h3>
+                        <div>
+                            <h4 class="item-name"> <strong> Nike Men's {{item.itemName}} 18/19 Jersey </strong> </h4>
+                            <h3 class="price"> <strong>${{item.price}} </strong> </h3>
                         </div>
-                        <v-btn @click="addToCart(index)"> <v-icon color="grey lighten-1">shopping_cart</v-icon> </v-btn>
-                        <v-btn v-if="loginStatus==true" @click="deleteItem(index)"> <v-icon>block</v-icon> Delete </v-btn>
+                    </div>
+                    <div class="middle-btm">
+                        <v-btn @click="addToCart(index)" flat small icon> <v-icon color="grey lighten-1">shopping_cart</v-icon> </v-btn>
+                        <v-btn v-if="loginStatus==true" @click="deleteItem(index)"> <v-icon size="5px">block</v-icon> Delete </v-btn>
                     </div>
                     
                 </div>
@@ -58,6 +58,16 @@ import {mapState,mapActions} from 'vuex'
     position: relative;
     width: 50%;
 }
+item-name {
+    font-size: 16px !important;
+    display: inline-block;
+    font-family: "Muli", sans-serif !important;
+}
+
+.price {
+    font-size: 30px !important;
+    font-family: "Muli",sans-serif;
+}
 
 .image {
   opacity: 1;
@@ -72,7 +82,7 @@ import {mapState,mapActions} from 'vuex'
   transition: .5s ease;
   opacity: 0;
   position: absolute;
-  top: 80%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);

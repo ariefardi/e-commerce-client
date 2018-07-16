@@ -50,7 +50,7 @@ export default {
              
              storageRef.ref('item_photos/'+ this.file.name).put(this.file)
              .then(snapshot=> {
-                //  console.log(snapshot)
+                 console.log(snapshot)
                 storageRef.ref('item_photos/'+ this.file.name).getDownloadURL()
                 .then(urlResponse=> {
                     swal('Item Has Been Uploaded')

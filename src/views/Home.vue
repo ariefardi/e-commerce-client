@@ -45,7 +45,7 @@ export default {
   margin-top: -5px;
 }
 .items2-list {
-  margin-top: 5px
+  margin-top: 0px
 }
 .topmar {
   margin-top: 100px

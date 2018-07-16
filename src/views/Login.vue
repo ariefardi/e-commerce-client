@@ -13,7 +13,7 @@
         </div>
         <button type="submit" class="float" @click="login">Login</button>
       </form>
- 	</div>
+    </div>
 </div>
 </template>
 

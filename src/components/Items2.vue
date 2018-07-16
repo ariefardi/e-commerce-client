@@ -5,7 +5,6 @@
                     <v-card-media >
                         <div>
                             <img :src="item.src" width="100%">
-                            <v-btn> <v-icon color="grey lighten-1">shopping_cart</v-icon>  </v-btn>
                         </div>
                     </v-card-media>
                 </v-card>
