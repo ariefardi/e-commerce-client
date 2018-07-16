@@ -57,7 +57,9 @@
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-  padding: 0
+  padding: 0;
+  -webkit-filter: brightness(80%); /* Safari 6.0 - 9.0 */
+    filter: brightness(80%);
 }
 
 .hero-text {

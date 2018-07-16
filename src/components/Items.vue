@@ -61,7 +61,7 @@
     }
     .container:hover .image {
         opacity: 0.3;
-        margin-left: 20px
+        margin-left: -20px
     }
 
     .container:hover .middle {

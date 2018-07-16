@@ -1,7 +1,7 @@
 <template>
     <div>
     <v-toolbar
-      absolute
+      fixed
       color="black"
       dark
     > 
@@ -21,7 +21,7 @@
       <v-btn to="login" flat v-if="loginStatus==false"> Login
       </v-btn>
 
-      <v-btn icon @click.native.stop="dialog = true" >
+      <v-btn icon @click="openModal" flat>
           <v-badge left color="red">
               <span slot="badge" > {{cart.length}} </span>
               <v-icon>shopping_cart</v-icon>
@@ -42,7 +42,7 @@ export default{
   },
   methods: {
     ...mapActions([
-        'addToCart','incQty','decQty'
+        'addToCart','incQty','decQty','openModal'
     ]),
     logout () {
       console.log('clear consolelog')

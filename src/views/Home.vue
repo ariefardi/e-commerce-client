@@ -2,7 +2,9 @@
 
   <div>
       <Navbar/>
-      <Carousel style="margin-bottom: 5px !important"/>
+      <Carousel class="marginCar" style="margin-bottom: 5px !important"/>
+      <CartModal/>
+      <DetailModal/>
       <div id="items-wrap">
         <Items class="items1-list"/>
         <Items2 class="items2-list"/>
@@ -23,6 +25,7 @@ import Carousel from '@/components/Carousel.vue'
 import CartModal from '@/components/CartModal.vue'
 import Footer from '@/components/Footer.vue'
 import Headerquote from '@/components/Headerquote.vue'
+import DetailModal from '@/components/DetailModal.vue'
 
 export default {
   
@@ -35,7 +38,8 @@ export default {
       Items3,
       CartModal,
       Footer,
-      Headerquote
+      Headerquote,
+      DetailModal
     }
 }
 </script>
@@ -49,5 +53,8 @@ export default {
 }
 .topmar {
   margin-top: 100px
+}
+.marginCar {
+  margin-top: 2.9%
 }
 </style>
