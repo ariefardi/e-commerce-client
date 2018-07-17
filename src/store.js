@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import swal from 'sweetalert';
+
 
 Vue.use(Vuex)
 
@@ -40,6 +42,9 @@ export default new Vuex.Store({
       this.state.cart[payload].qty++
       this.state.cart[payload].totalPrice+=this.state.cart[payload].price
       this.state.totalInCart+=this.state.cart[payload].price
+    },
+    setCheckout(state, payload) {
+      state.cart = payload
     }
   },
   actions: {
@@ -66,6 +71,7 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
+
     addToCartFromDetail(context, item) {
       console.log(item)
       // let itemAdd = this.state.items
@@ -78,14 +84,29 @@ export default new Vuex.Store({
           qtyAdd = i
         }
       }
-      if (counter==0) {
-        context.commit('addCart', item)
-      }
-      else{
-        cartAdd[qtyAdd].totalPrice+=item.price
-        cartAdd[qtyAdd].qty++
-        this.state.totalInCart+=item.price
-      }
+      swal({
+        title: "Are you sure?",
+        text: "Your item will be sent to you shopping cart",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willBuy) => {
+        if (willBuy) {
+          if (counter==0) {
+            context.commit('addCart', item)
+          }
+          else{
+            cartAdd[qtyAdd].totalPrice+=item.price
+            cartAdd[qtyAdd].qty++
+            this.state.totalInCart+=item.price
+          }
+          swal("Successfully added item in your shopping cart!", {
+            icon: "success",
+          });
+        }
+      });
+     
     },
     addToCart(context,index) {
       let test = this.state.items[index].itemName
@@ -114,14 +135,28 @@ export default new Vuex.Store({
         imgSrc: itemAdd[index].imgSrc
       }
       console.log(temp)
-      if (counter===0) {
-        context.commit('addCart',temp)
-      }
-      else{
-        cartAdd[qtyAdd].totalPrice+=temp.price
-        cartAdd[qtyAdd].qty++
-        this.state.totalInCart+=temp.price
-      }
+      swal({
+        title: "Are you sure?",
+        text: "Your item will be sent to you shopping cart",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willBuy) => {
+        if (willBuy) {
+          if (counter===0) {
+            context.commit('addCart',temp)
+          }
+          else{
+            cartAdd[qtyAdd].totalPrice+=temp.price
+            cartAdd[qtyAdd].qty++
+            this.state.totalInCart+=temp.price
+          }
+          swal("Successfully added item in your shopping cart!", {
+            icon: "success",
+          });
+        }
+      });
       // context.commit('addCart',item)
     },
     incQty (context,index) {
@@ -154,6 +189,23 @@ export default new Vuex.Store({
       .catch(err=> {
         console.log(err.message)
       })
+    },
+    checkout(context,total) {
+      swal({
+        title: `Your total purchase : $${total}`,
+        text: "You will buy all your item in your shopping cart",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willBuy) => {
+        if (willBuy) {
+          context.commit('setCheckout',[])
+          swal("Succesfully buy all your item in shopping cart", {
+            icon: "success",
+          });
+        }
+      });
     }
   }
 })

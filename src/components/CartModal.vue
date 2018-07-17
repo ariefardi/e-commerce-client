@@ -24,20 +24,17 @@
               </div>
               <div class="price"> {{item.price}} </div>
               <div class="quantity">
-                <p class="quantity-field" style="margin-top:-2%;margin-left:20%" > {{item.qty}} <v-icon small color="black" style="padding-bot:20%" >fa fa-plus</v-icon> </p>
+                <p class="quantity-field" style="margin-top:-2%;margin-left:20%" > {{item.qty}}</p>
                 <v-btn small flat icon color="black" @click="incQty(index)"> <v-icon color="black" style="padding-bot:20%" >fa fa-plus</v-icon> </v-btn>
                 <v-btn small flat icon color="black" @click="decQty(index)"> <v-icon color="black">fa fa-minus</v-icon> </v-btn>
               </div>
               <div class="subtotal" > {{item.price*item.qty}} </div>
-              <div class="remove">
-                <v-btn small flat>remove</v-btn>
-              </div>
             </div>
           </div>
           </v-flex>
         </v-container>
         <div v-if="cart.length>0"> 
-          Total:  ${{totalInCart}} <v-btn flat small color="black"> Checkout </v-btn> 
+          <p style="font-size:150%"> Total:  ${{totalInCart}} </p>  <v-btn @click="checkout(totalInCart)" flat color="black"> <p style="margin-top:-13%"> Checkout </p> </v-btn> 
         </div>
         <div v-else >
           <h2 style="text-align:center"> No Item in Shopping Cart </h2>
@@ -64,7 +61,7 @@ import {mapState, mapActions} from 'vuex'
     },
     methods: {
       ...mapActions([
-        'incQty','decQty'
+        'incQty','decQty','checkout'
       ])
     }
   }
@@ -195,17 +192,6 @@ li.subtotal:before {
   text-align: right;
 }
 
-.remove {
-  bottom: 1.125rem;
-  float: right;
-  position: absolute;
-  right: 0;
-  text-align: right;
-  width: 45%;
-}
-
-
-
 .item-heading {
   padding-left: 4.375rem;
   -webkit-box-sizing: border-box;
@@ -245,12 +231,6 @@ li.subtotal:before {
   font-size: 0.625rem;
   padding: 2px;
   width: 3.75rem;
-}
-
-aside {
-  float: right;
-  position: relative;
-  width: 30%;
 }
 
 .summary {
@@ -348,8 +328,7 @@ aside {
   aside,
   .basket,
   .summary,
-  .item,
-  .remove {
+  .item, {
     width: 100%;
   }
   .basket-labels {
@@ -383,9 +362,6 @@ aside {
     text-align: left;
     margin-top: 0.75rem;
     position: relative;
-  }
-  .remove button {
-    padding: 0;
   }
   .summary {
     margin-top: 1.25rem;
