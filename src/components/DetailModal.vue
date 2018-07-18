@@ -1,5 +1,5 @@
 <template>
-<v-dialog v-model="detailDialog" max-width="70%"  >
+<v-dialog v-model="detailDialog" max-width="50.4%"  >
     <main style="background-color:white" >
     <v-container grid-list-md text-xs-center class="margintop">
         <v-layout row wrap fill-height>
@@ -83,4 +83,13 @@ import {mapState, mapActions} from 'vuex'
     .descProduct {
         margin-top: 3%
     }
+    main {
+        clear: both;
+        font-size: 0.75rem;
+        margin: 0 auto;
+        overflow: hidden;
+        padding: 1rem 0;
+        width: 960px;
+    }
+
 </style>
