@@ -56,7 +56,7 @@ export default new Vuex.Store({
     },
     getPost(context) {
       console.log('text')
-      axios.get('http://localhost:3000/items/')
+      axios.get('http://api-ecommerce.ariefardi.xyz/items')
         .then(({data})=>{
           console.log(data)
           let result = data.items
@@ -145,7 +145,7 @@ export default new Vuex.Store({
     deleteItem (context,index) {
       console.log("delete")
       console.log(index)
-      axios.delete('http://localhost:3000/items/delete/'+this.state.items[index]._id)
+      axios.delete('http://api-ecommerce.ariefardi.xyz/delete/'+this.state.items[index]._id)
       .then(()=>{
         console.log("deleted item")
         context.commit('deleteItemInState',index)

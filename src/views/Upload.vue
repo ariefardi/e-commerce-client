@@ -57,7 +57,7 @@ export default {
                     // console.log(urlResponse,'ini urlnya coy')
                     this.imgSrc = urlResponse
                     console.log(this.imgSrc)
-                        axios.post('http://localhost:3000/items',{
+                        axios.post('http://api-ecommerce.ariefardi.xyz/items',{
                         itemName: this.itemName,
                         price: this.price,
                         imgSrc: urlResponse
