@@ -14,7 +14,7 @@
                         <v-btn v-if="loginStatus==false" @click="addToCart(index)" flat small icon> <p> <v-icon color="grey lighten-1">shopping_cart</v-icon> </p> </v-btn>
                         <v-btn v-if="loginStatus==false" @click="openDetailDialog(index)" flat small icon > <p> <v-icon color="grey lighten-1" >fa fa-eye</v-icon> </p> </v-btn>
                         <v-btn v-if="loginStatus==true" @click="deleteItem(index)"> <v-icon style="padding-bottom:40%">block</v-icon> </v-btn>
-                        <v-btn v-if="loginStatus==true" @click="deleteItem(index)"> <v-icon style="padding-bottom:40%">fa fa-edit</v-icon> </v-btn>
+                        <v-btn v-if="loginStatus==true" @click="updateItem(index)"> <v-icon style="padding-bottom:40%">fa fa-edit</v-icon> </v-btn>
                     </div>
                     
                 </div>
@@ -39,7 +39,7 @@ import {mapState,mapActions} from 'vuex'
         ,
         methods: {
             ...mapActions([
-                'addToCart', 'deleteItem', 'openDetailDialog'
+                'addToCart', 'deleteItem', 'openDetailDialog','updateItem'
             ])
         },
         created:function(){
@@ -58,7 +58,8 @@ import {mapState,mapActions} from 'vuex'
 <style scoped>
 .container {
     position: relative;
-    width: 50%;
+    width: 100%;
+    height: 100%
 }
 item-name {
     font-size: 16px !important;

@@ -177,6 +177,9 @@ export default new Vuex.Store({
         this.state.totalInCart-=price
       }
     },
+    updateItem(context, index) {
+      console.log('update')
+    },
     deleteItem (context,index) {
       console.log("delete")
       console.log(index)
