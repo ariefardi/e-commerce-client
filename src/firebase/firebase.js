@@ -1,13 +1,13 @@
  // Initialize Firebase
 let firebase = require('firebase')
 
- var config = {
-    apiKey: "AIzaSyC9mfkKEOjDpUeP_y3c-pWPcessSiZKPqc",
-    authDomain: "e-commerce-42a4a.firebaseapp.com",
-    databaseURL: "https://e-commerce-42a4a.firebaseio.com",
-    projectId: "e-commerce-42a4a",
-    storageBucket: "e-commerce-42a4a.appspot.com",
-    messagingSenderId: "43747078165"
+  var config = {
+    apiKey: "AIzaSyB_v1xTx16ec7IthGuufuvAcAZwY0JWxP8",
+    authDomain: "e-commerce-150bb.firebaseapp.com",
+    databaseURL: "https://e-commerce-150bb.firebaseio.com",
+    projectId: "e-commerce-150bb",
+    storageBucket: "e-commerce-150bb.appspot.com",
+    messagingSenderId: "416430460078"
   };
   firebase.initializeApp(config);
 

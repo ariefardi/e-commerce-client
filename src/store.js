@@ -61,7 +61,7 @@ export default new Vuex.Store({
     },
     getPost(context) {
       console.log('text')
-      axios.get('http://api-ecommerce.ariefardi.xyz/items')
+      axios.get('http://localhost:3000/items')
         .then(({data})=>{
           console.log(data)
           let result = data.items
