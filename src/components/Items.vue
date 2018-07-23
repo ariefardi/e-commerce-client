@@ -6,7 +6,7 @@
                         <div class="container">
                             <img :src="item.src" class="image">
                             <div class="middle">
-                                <h3 class="text">Russia 2018</h3>
+                                <h3 class="text">RUSSIA 2018</h3>
                             </div>
                         </div>
                     </v-card-media>

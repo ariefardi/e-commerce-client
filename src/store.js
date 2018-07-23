@@ -200,7 +200,7 @@ export default new Vuex.Store({
     },
     checkout(context,total) {
       swal({
-        title: `Your total purchase : $${total}`,
+        title: `Your total purchase : $${total.toString().slice(0,5)}`,
         text: "You will buy all your item in your shopping cart",
         icon: "warning",
         buttons: true,
