@@ -22,19 +22,19 @@
                   <p>Product Code - {{item._id}} </p>
                 </div>
               </div>
-              <div class="price"> {{item.price}} </div>
+              <div class="price"> {{item.price }} </div>
               <div class="quantity">
                 <p class="quantity-field" style="margin-top:-2%;margin-left:20%" > {{item.qty}}</p>
-                <v-btn small flat icon color="black" @click="incQty(index)"> <v-icon color="black" style="padding-bot:20%" >fa fa-plus</v-icon> </v-btn>
-                <v-btn small flat icon color="black" @click="decQty(index)"> <v-icon color="black">fa fa-minus</v-icon> </v-btn>
+                <v-btn style="padding:0" small flat icon color="black" @click="incQty(index)"> <v-icon color="black" style="padding-bot:20%" >fa fa-plus</v-icon> </v-btn>
+                <v-btn style="padding:0" small flat icon color="black" @click="decQty(index)"> <v-icon color="black">fa fa-minus</v-icon> </v-btn>
               </div>
-              <div class="subtotal" > {{item.price*item.qty}} </div>
+              <div class="subtotal" > {{item.price*item.qty | filterPrice }} </div>
             </div>
           </div>
           </v-flex>
         </v-container>
         <div v-if="cart.length>0"> 
-          <p style="font-size:150%"> Total:  ${{totalInCart}} </p>  <v-btn @click="checkout(totalInCart)" flat color="black"> <p style="margin-top:-13%"> Checkout </p> </v-btn> 
+          <p style="font-size:150%"> Total:  ${{totalInCart | filterPrice }} </p>  <v-btn @click="checkout(totalInCart)" flat color="black"> <p style="margin-top:-13%"> Checkout </p> </v-btn> 
         </div>
         <div v-else >
           <h2 style="text-align:center"> No Item in Shopping Cart </h2>
@@ -63,6 +63,13 @@ import {mapState, mapActions} from 'vuex'
       ...mapActions([
         'incQty','decQty','checkout'
       ])
+    },
+    filters: {
+      filterPrice (value) {
+        let hasil = value.toString().slice(0,5)
+        hasil = Number(hasil)
+        return hasil
+      }
     }
   }
 </script>

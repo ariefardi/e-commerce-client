@@ -18,7 +18,7 @@
         logout
       </v-btn>
 
-      <v-btn to="login" flat v-if="loginStatus==false"> Login
+      <v-btn to="login" style="padding:0;padding-right:10%" flat v-if="loginStatus==false"> <h4> <strong> Login </strong> </h4>
       </v-btn>
 
       <v-btn v-if="loginStatus==false" icon @click="openModal" flat>
@@ -92,6 +92,10 @@ export default{
 <style lang="scss" scoped>
   .cont {
     background-color: #CFD8DC
+  }
+  h4 {
+     font-family: "Muli", sans-serif;
+     font-weight: 700
   }
 </style>
 
