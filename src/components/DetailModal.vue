@@ -22,8 +22,8 @@
             <v-card flat color="white">
                 <div>
                     <p> <strong>  SKU: BR1242412  Brand: Nike </strong></p>
-                    <h1 > Nike Men's {{detailItem.itemName}} 18/19 Authentic Jersey </h1>
-                    <h2> <strong> ${{detailItem.price}} </strong> </h2>
+                    <h1 > Nike Men's {{detailItem.itemName}} 18/19 Authentic Jersey <v-btn  @click="updateModalOpen" style="padding:0" icon> <v-icon>edit</v-icon> </v-btn> </h1> 
+                    <h2> <strong> ${{detailItem.price}} </strong> <v-btn @click="updatePriceModalOpen"  icon style="padding:0" > <v-icon> edit </v-icon> </v-btn> </h2>
                     <div>
                     <v-btn @click="addToCartFromDetail(detailItem)" small color="yellow"> <p> <strong> Add To Cart </strong> </p> </v-btn>
                     </div>
@@ -59,7 +59,7 @@ import {mapState, mapActions} from 'vuex'
     },
     methods: {
       ...mapActions([
-          'addToCartFromDetail'
+          'addToCartFromDetail', 'updateModalOpen','updatePriceModalOpen'
       ])
     }
  }

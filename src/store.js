@@ -13,6 +13,8 @@ export default new Vuex.Store({
     totalInCart: 0,
     dialog: false,
     detailDialog: false,
+    updateDialog: false,
+    updatePriceDialog: false,
     detailItem: ''
   },
   mutations: {
@@ -37,6 +39,12 @@ export default new Vuex.Store({
     },
     setDetailDialog (state, payload) {
       state.detailDialog = payload
+    },
+    setUpdateDialog (state, payload) {
+      state.updateDialog = payload
+    },
+    setUpdatePriceDialog (state, payload) {
+      state.updatePriceDialog = payload
     },
     addQty (state, payload) {
       this.state.cart[payload].qty++
@@ -177,13 +185,10 @@ export default new Vuex.Store({
         this.state.totalInCart-=price
       }
     },
-    updateItem(context, index) {
-      console.log('update')
-    },
     deleteItem (context,index) {
       console.log("delete")
       console.log(index)
-      axios.delete('http://api-ecommerce.ariefardi.xyz/delete/'+this.state.items[index]._id)
+      axios.delete('http://localhost:3000/items/delete/'+this.state.items[index]._id)
       .then(()=>{
         console.log("deleted item")
         context.commit('deleteItemInState',index)
@@ -209,6 +214,14 @@ export default new Vuex.Store({
           });
         }
       });
+    },
+    updateModalOpen (context) {
+      console.log('open modal')
+      context.commit('setUpdateDialog', true)
+    },
+    updatePriceModalOpen(context) {
+      console.log('Open Price Modal')
+      context.commit('setUpdatePriceDialog', true)
     }
   }
 })

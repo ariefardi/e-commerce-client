@@ -21,7 +21,7 @@
       <v-btn to="login" flat v-if="loginStatus==false"> Login
       </v-btn>
 
-      <v-btn icon @click="openModal" flat>
+      <v-btn v-if="loginStatus==false" icon @click="openModal" flat>
           <v-badge left color="red">
               <span slot="badge" > {{cart.length}} </span>
               <v-icon>shopping_cart</v-icon>

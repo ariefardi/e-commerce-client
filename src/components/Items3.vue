@@ -6,7 +6,7 @@
                     <img :src="item.imgSrc" alt=""  class="image">
                     <div class="middle">
                         <div>
-                            <h4 class="item-name"> <strong> Nike Men's {{item.itemName}} 18/19 Jersey </strong> </h4>
+                            <h4 class="item-name"> <strong> {{item.brand}} {{item.gender}} {{item.itemName}} {{item.released}} {{item.typeJersey}} Jersey </strong> </h4>
                             <h3 class="price"> <strong>${{item.price}} </strong> </h3>
                         </div>
                     </div>

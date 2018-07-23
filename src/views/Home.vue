@@ -5,6 +5,8 @@
       <Carousel class="marginCar" style="margin-bottom: 5px !important"/>
       <CartModal/>
       <DetailModal/>
+      <UpdateModal/>
+      <UpdatePrice/>
       <div id="items-wrap">
         <Items class="items1-list"/>
         <Items2 class="items2-list"/>
@@ -26,6 +28,9 @@ import CartModal from '@/components/CartModal.vue'
 import Footer from '@/components/Footer.vue'
 import Headerquote from '@/components/Headerquote.vue'
 import DetailModal from '@/components/DetailModal.vue'
+import UpdateModal from '@/components/UpdateModal.vue'
+import UpdatePrice from '@/components/UpdatePrice.vue'
+
 
 export default {
   
@@ -39,7 +44,9 @@ export default {
       CartModal,
       Footer,
       Headerquote,
-      DetailModal
+      DetailModal,
+      UpdateModal,
+      UpdatePrice
     }
 }
 </script>
