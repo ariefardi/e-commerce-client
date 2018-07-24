@@ -77,7 +77,7 @@ export default {
                 //  let diri = this
                 // this.detailItem = data
                 console.log(data.updated)
-                this.detailItem = data.updated
+                // this.detailItem = data.updated
                 swal('berhasil update')
                 .then(reload=> {
                     console.log(reload)

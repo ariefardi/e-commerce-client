@@ -1,11 +1,11 @@
 <template>
-<v-dialog v-model="detailDialog" max-width="50.4%"  >
+<v-dialog v-model="detailDialog" max-width="100%" >
     <main style="background-color:white" >
     <v-container grid-list-md text-xs-center class="margintop">
         <v-layout row wrap fill-height>
         <v-flex xs1>
-            <v-card>
-                <v-card-text>xs1</v-card-text>
+            <v-card flat>
+                <v-card-media > <img :src="detailItem.imgSrc" alt=""> </v-card-media>
             </v-card>
         </v-flex>
         
@@ -14,6 +14,9 @@
                 <v-card-media >
                     <div class="container">
                         <img :src="detailItem.imgSrc" class="image">
+                        <input @change="postImageHandler" style="margin-left:20%;margin-bottom:-5%" type="file" name="file-7[]" id="file-7" class="inputfile inputfile-6" data-multiple-caption="{count} files selected" multiple />
+                        <label for="file-7"><span></span> <strong><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> Choose a file&hellip;</strong></label>
+                        <v-btn @click="uploadPhoto" flat style="padding:0"> <strong> Upload Image </strong> <v-icon style="padding-left:20px">edit</v-icon> </v-btn>
                     </div>
                 </v-card-media>
             </v-card>
@@ -32,7 +35,7 @@
         </v-flex>
         <v-flex xs1>
             <v-card>
-                <v-card-text>xs 1</v-card-text>
+                <v-card-text></v-card-text>
             </v-card>
         </v-flex>
         </v-layout>
@@ -43,7 +46,15 @@
 
 <script>
 import {mapState, mapActions} from 'vuex'
+import {storageRef} from  '@/firebase/firebase.js'
+import swal from 'sweetalert'
+import axios from 'axios'
  export default {
+     data () {
+         return {
+             file: ''
+         }
+     },
     computed: {
       detailDialog: {
         get () {
@@ -60,7 +71,40 @@ import {mapState, mapActions} from 'vuex'
     methods: {
       ...mapActions([
           'addToCartFromDetail', 'updateModalOpen','updatePriceModalOpen'
-      ])
+      ]),
+      postImageHandler (event) {
+          console.log(event.target.files[0])
+          this.file = event.target.files[0]
+      },
+      uploadPhoto () {
+           storageRef.ref('item_photos/'+ this.file.name).put(this.file)
+             .then(snapshot=> {
+                 console.log(snapshot)
+                storageRef.ref('item_photos/'+ this.file.name).getDownloadURL()
+                .then(urlResponse=> {
+                    // console.log(urlResponse,'ini urlnya coy')
+                    this.imgSrc = urlResponse
+                    console.log(this.imgSrc)
+                        axios.post('http://localhost:3000/items',{
+                        itemName : this.detailItem.itemName,
+                        price: this.detailItem.price,
+                        brand : this.detailItem.brand,
+                        gender : this.detailItem.gender,
+                        released : this.detailItem.released,
+                        typeJersey : this.detailItem.typeJersey,
+                        imgSrc: urlResponse
+                        })
+                        .then(data=>{
+                            console.log(data)
+                            swal('berhasil upload')
+                            .then(reload=> {
+                                console.log(reload)
+                                location.reload()
+                            })
+                        })
+                })
+             })
+      }
     }
  }
 </script>
@@ -89,7 +133,7 @@ import {mapState, mapActions} from 'vuex'
         margin: 0 auto;
         overflow: hidden;
         padding: 1rem 0;
-        width: 960px;
+        width: 100%;
     }
 
 </style>

@@ -1,4 +1,5 @@
 <template>
+<v-container fluid style="padding:0">
     <v-layout>
         <v-flex xs4 order-md3 order-xs2 v-for="(item, index) in imgs" :key="index">
             <v-card dark tile flat color="yellow" >
@@ -12,6 +13,7 @@
         </v-card>
         </v-flex>
     </v-layout>
+</v-container>
 </template>
 
 <script>
@@ -25,10 +27,10 @@ export default {
                    src: 'http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c4f8.png'
                },
                {
-                   src: 'https://cdn.freebiesupply.com/logos/large/2x/vans-3-logo-png-transparent.png'
+                   src: 'http://pngimg.com/uploads/adidas/adidas_PNG17.png'
                },
                {
-                   src: 'https://upload.wikimedia.org/wikipedia/en/thumb/3/37/Jumpman_logo.svg/1200px-Jumpman_logo.svg.png'
+                   src: 'https://clipart.info/images/ccovers/1496248997cr-7-cristiano-ronaldo-logo-png.png'
                },
                
             ]
