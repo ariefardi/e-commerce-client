@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import swal from 'sweetalert';
-
+import {storageRef} from '@/firebase/firebase.js'
 
 Vue.use(Vuex)
 
@@ -15,7 +15,8 @@ export default new Vuex.Store({
     detailDialog: false,
     updateDialog: false,
     updatePriceDialog: false,
-    detailItem: ''
+    detailItem: '',
+    file: ''
   },
   mutations: {
     setItems (state, payload) {
@@ -53,6 +54,9 @@ export default new Vuex.Store({
     },
     setCheckout(state, payload) {
       state.cart = payload
+    },
+    setFile (state, payload) {
+      state.file = payload
     }
   },
   actions: {
@@ -222,6 +226,43 @@ export default new Vuex.Store({
     updatePriceModalOpen(context) {
       console.log('Open Price Modal')
       context.commit('setUpdatePriceDialog', true)
+    },
+    postImageHandler(context,event) {
+      console.log(event.target.files[0])
+      context.commit('setFile', event.target.files[0])
+    },
+    uploadPhoto (context,id) {
+      console.log('upload')
+      console.log(this.state.file)
+      console.log('ini id nya',id)
+      // console.log(storageRef, ' storage ref')
+      storageRef.ref('item_photos/'+ this.state.file.name).put(this.state.file)
+        .then(snapshot=> {
+           console.log(snapshot)
+           storageRef.ref('item_photos/'+ this.state.file.name).getDownloadURL()
+           .then(urlResponse=> {
+               // console.log(urlResponse,'ini urlnya coy')
+               this.imgSrc = urlResponse
+               console.log(this.imgSrc)
+                   axios.put('http://localhost:3000/items/update/'+id,{
+                       itemName : this.state.detailItem.itemName,
+                       price: this.state.detailItem.price,
+                       brand : this.state.detailItem.brand,
+                       gender : this.state.detailItem.gender,
+                       released : this.state.detailItem.released,
+                       typeJersey : this.state.detailItem.typeJersey,
+                       imgSrc: urlResponse
+                   })
+                   .then(data=>{
+                       console.log(data)
+                       swal('berhasil upload')
+                       .then(reload=> {
+                           console.log(reload)
+                           location.reload()
+                       })
+                   })
+           })
+        })
     }
   }
 })
