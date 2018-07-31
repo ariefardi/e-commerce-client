@@ -14,7 +14,7 @@
                         <v-btn v-if="loginStatus==false" @click="addToCart(index)" flat small icon> <p> <v-icon color="grey lighten-1">shopping_cart</v-icon> </p> </v-btn>
                         <v-btn v-if="loginStatus==false" @click="openDetailDialog(index)" flat small icon > <p> <v-icon color="grey lighten-1" >fa fa-eye</v-icon> </p> </v-btn>
                         <v-btn v-if="loginStatus==true" @click="deleteItem(index)"> <v-icon style="padding-bottom:40%">block</v-icon> </v-btn>
-                        <v-btn v-if="loginStatus==true" @click="updateItem(index)"> <v-icon style="padding-bottom:40%">fa fa-edit</v-icon> </v-btn>
+                        <v-btn v-if="loginStatus==true" @click="openDetailDialog(index)"> <v-icon style="padding-bottom:40%">fa fa-edit</v-icon> </v-btn>
                     </div>
                     
                 </div>

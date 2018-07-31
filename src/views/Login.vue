@@ -43,7 +43,7 @@ export default{
             .then(({data})=>{
                 localStorage.setItem('token',data.token)
                 console.log(data.token)
-                window.location = '/'
+                this.$router.push('/')
             })
             .catch(err=> {
                 if (err) {
@@ -57,21 +57,17 @@ export default{
 </script>
 
 <style lang="scss" scoped>
-
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700);
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css);
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css);
-
 $shadow-color: #23203b;
 $input-color: lighten(#AB9E95, 10%);
 $input-border-color: #5E5165;
 $button-background-color: #27AE60;
-
 * {
   margin: 0;
   padding: 0;
 }
-
 html { 
   background: url(https://dl.dropboxusercontent.com/u/159328383/background.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
@@ -79,15 +75,13 @@ html {
   -o-background-size: cover;
   background-size: cover;
 }
-
 body {
   background: transparent;
 }
-
 body, input, button {
   font-family: 'Source Sans Pro', sans-serif;
+  background: url(https://dl.dropboxusercontent.com/u/159328383/background.jpg) no-repeat center center fixed; 
 }
-
 @mixin normalize-input {
   display: block;
   width: auto;
@@ -98,17 +92,14 @@ body, input, button {
   background: none;
   border-radius: 0px;
 }
-
 .login {
   padding: 15px;
   width: 400px;
   min-height: 400px;
   margin: 2% auto 0 auto;
-
   .heading {
     text-align: center;
     margin-top: 1%;
-
     h2 {
       font-size: 3em;
       font-weight: 300;
@@ -118,42 +109,34 @@ body, input, button {
       text-shadow: 1px 1px 3px $shadow-color;
     }
   }
-
   form {
     .input-group {
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       border-top: 1px solid rgba(255, 255, 255, 0.1);
-
       &:last-of-type {
         border-top: none;
       }
-
       span {
         background: transparent;
         min-width: 53px;
         border: none;
-
         i {
           font-size: 1.5em;
           color: rgba(255, 255, 255, 0.2);
         }
       }
     }
-
     input.form-control {
       @include normalize-input;
-
       padding: 10px;
       font-size: 1.6em;
       width: 100%;
       background: transparent;
       color: $input-color;
-
       &:focus {
         border: none;
       }
     }
-
     button {
       margin-top: 20px;
       background: $button-background-color;
@@ -165,7 +148,6 @@ body, input, button {
       border-radius: 3px;
       color: lighten($button-background-color, 40%);
       border-bottom: 4px solid darken($button-background-color, 10%);
-
       &:hover {
         background: tint($button-background-color, 4%);
         -webkit-animation: hop 1s;
@@ -174,7 +156,6 @@ body, input, button {
     }
   }
 }
-
 .float {
   display: inline-block;
   -webkit-transition-duration: 0.3s;
@@ -185,24 +166,19 @@ body, input, button {
   transform: translateZ(0);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
-
 .float:hover, .float:focus, .float:active {
   -webkit-transform: translateY(-3px);
   transform: translateY(-3px);
 }
-
 /* Large Devices, Wide Screens */
-
 @media only screen and (max-width : 1500px) {
 }
-
 @media only screen and (max-width : 1200px) {
   .login {
     width: 600px;
     font-size: 2em;
   }
 }
-
 @media only screen and (max-width : 1100px) {
   .login {
     margin-top: 2%;
@@ -210,7 +186,6 @@ body, input, button {
     font-size: 1.7em;
   }
 }
-
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
   .login {
@@ -220,7 +195,6 @@ body, input, button {
     min-height: 0;
   }
 }
-
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
   .login {
@@ -230,22 +204,18 @@ body, input, button {
     min-height: 0;
   }
 }
-
 /* Extra Small Devices, Phones */ 
 @media only screen and (max-width : 480px) {
   .login {
-
     h2 {
       margin-top: 0;
     }
-
     margin-top: 0;
     width: 400px;
     font-size: 1em;
     min-height: 0;
   }
 }
-
 /* Custom, iPhone Retina */ 
 @media only screen and (max-width : 320px) {
   .login {
@@ -255,5 +225,4 @@ body, input, button {
     min-height: 0;
   }
 }
-
 </style>

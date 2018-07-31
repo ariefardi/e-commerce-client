@@ -3,20 +3,14 @@
     <main style="background-color:white" >
     <v-container grid-list-md text-xs-center class="margintop">
         <v-layout row wrap fill-height>
-        <v-flex xs1>
-            <v-card flat>
-                <v-card-media > <img :src="detailItem.imgSrc" alt=""> </v-card-media>
-            </v-card>
-        </v-flex>
-        
         <v-flex xs6>
             <v-card flat>
                 <v-card-media >
                     <div class="container">
                         <img :src="detailItem.imgSrc" class="image">
-                        <input @change="postImageHandler" style="margin-left:20%;margin-bottom:-5%" type="file" name="file-7[]" id="file-7" class="inputfile inputfile-6" data-multiple-caption="{count} files selected" multiple />
-                        <label for="file-7"><span></span> <strong><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> Choose a file&hellip;</strong></label>
-                        <v-btn @click="uploadPhoto(detailItem._id)" flat style="padding:0"> <strong> Upload Image </strong> <v-icon style="padding-left:20px">edit</v-icon> </v-btn>
+                        <input v-if="loginStatus" @change="postImageHandler" style="margin-left:25%" type="file" />
+                        <!-- <label for="file-7"><span></span> <strong><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> Choose a file&hellip;</strong></label> -->
+                        <v-btn v-if="loginStatus" @click="uploadPhoto(detailItem._id)" flat style="padding:0"> <strong> Upload Image </strong> <v-icon style="padding-left:20px">edit</v-icon> </v-btn>
                     </div>
                 </v-card-media>
             </v-card>
@@ -24,18 +18,13 @@
         <v-flex xs5 class="descProduct">
             <v-card flat color="white">
                 <div>
-                    <p> <strong>  SKU: BR1242412  Brand: Nike </strong></p>
-                    <h1 > Nike Men's {{detailItem.itemName}} 18/19 Authentic Jersey <v-btn  @click="updateModalOpen" style="padding:0" icon> <v-icon>edit</v-icon> </v-btn> </h1> 
-                    <h2> <strong> ${{detailItem.price}} </strong> <v-btn @click="updatePriceModalOpen"  icon style="padding:0" > <v-icon> edit </v-icon> </v-btn> </h2>
+                    <p> <strong>  SKU: BR1242412  Brand: {{detailItem.brand}} </strong></p>
+                    <h1 > Nike Men's {{detailItem.itemName}} 18/19 Authentic Jersey <v-btn v-if="loginStatus"  @click="updateModalOpen" style="padding:0" icon> <v-icon>edit</v-icon> </v-btn> </h1> 
+                    <h2> <strong> ${{detailItem.price}} </strong> <v-btn v-if="loginStatus" @click="updatePriceModalOpen"  icon style="padding:0" > <v-icon> edit </v-icon> </v-btn> </h2>
                     <div>
                     <v-btn @click="addToCartFromDetail(detailItem)" small color="yellow"> <p> <strong> Add To Cart </strong> </p> </v-btn>
                     </div>
                 </div>
-            </v-card>
-        </v-flex>
-        <v-flex xs1>
-            <v-card>
-                <v-card-text></v-card-text>
             </v-card>
         </v-flex>
         </v-layout>
@@ -50,9 +39,18 @@ import {storageRef} from  '@/firebase/firebase.js'
 import swal from 'sweetalert'
 import axios from 'axios'
  export default {
+     created () {
+         if (localStorage.hasOwnProperty('token')) {
+                this.loginStatus = true
+        }
+        else {
+                this.loginStatus = false
+        }
+     },
      data () {
          return {
-             file: ''
+             file: '',
+             loginStatus: false,
          }
      },
     computed: {

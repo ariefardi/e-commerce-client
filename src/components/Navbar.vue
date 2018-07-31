@@ -6,14 +6,21 @@
       dark
     > 
       <v-toolbar-title> <img src="../assets/logo.png" alt="" width="100"> </v-toolbar-title>
-
+      <v-text-field
+            placeholder="Jersey, Jacket, World Cup....."
+            outline
+            color="white"
+            class="text-field"
+      >
+      </v-text-field>
+      <v-btn @click="searchQuery" style="padding:0" flat icon ><v-icon>search</v-icon></v-btn>
       <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down" >
-      <v-btn flat v-if="loginStatus == true" to="/upload" >
+      <v-btn style="padding:0;padding-right:10%"  flat v-if="loginStatus == true" to="/upload" >
         <v-icon >cloud_upload</v-icon>
         upload
       </v-btn>
-      <v-btn flat v-if="loginStatus == true" @click="logout">
+      <v-btn style="padding:0;padding-right:10%"  flat v-if="loginStatus == true" @click="logout">
         <v-icon >person</v-icon>
         logout
       </v-btn>
@@ -30,6 +37,7 @@
     </v-toolbar-items>
     </v-toolbar>
     </div>
+
 </template>
 <script>
 import {mapState, mapActions} from 'vuex'
@@ -42,7 +50,7 @@ export default{
   },
   methods: {
     ...mapActions([
-        'addToCart','incQty','decQty','openModal'
+        'addToCart','incQty','decQty','openModal', 'searchQuery'
     ]),
     logout () {
       console.log('clear consolelog')
@@ -96,6 +104,9 @@ export default{
   h4 {
      font-family: "Muli", sans-serif;
      font-weight: 700
+  }
+  .text-field {
+    margin-left: 20px
   }
 </style>
 

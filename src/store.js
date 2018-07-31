@@ -263,6 +263,9 @@ export default new Vuex.Store({
                    })
            })
         })
+    },
+    searchQuery ({commit}) {
+      console.log('search query')
     }
   }
 })
