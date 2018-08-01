@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import swal from 'sweetalert';
+import router from './router'
 import {storageRef} from '@/firebase/firebase.js'
 
 Vue.use(Vuex)
@@ -16,11 +17,19 @@ export default new Vuex.Store({
     updateDialog: false,
     updatePriceDialog: false,
     detailItem: '',
-    file: ''
+    file: '',
+    querySearch: '',
+    queryCount: 0,
+    WorldCup: true,
+    Jacket: true
   },
   mutations: {
+    setQuerySearch (state, payload) {
+      state.querySearch = payload
+    },
     setItems (state, payload) {
       state.items = payload
+      state.querySearch = ''
     },
     setDetailItem (state, payload) {
       state.detailItem = payload
@@ -73,7 +82,7 @@ export default new Vuex.Store({
     },
     getPost(context) {
       console.log('text')
-      axios.get('http://localhost:3000/items')
+      axios.get('htts://api-ecommerce.ariefardi.xyz/items')
         .then(({data})=>{
           console.log(data)
           let result = data.items
@@ -192,7 +201,7 @@ export default new Vuex.Store({
     deleteItem (context,index) {
       console.log("delete")
       console.log(index)
-      axios.delete('http://localhost:3000/items/delete/'+this.state.items[index]._id)
+      axios.delete('https://api-ecommerce.ariefardi.xyz/items/delete/'+this.state.items[index]._id)
       .then(()=>{
         console.log("deleted item")
         context.commit('deleteItemInState',index)
@@ -244,7 +253,7 @@ export default new Vuex.Store({
                // console.log(urlResponse,'ini urlnya coy')
                this.imgSrc = urlResponse
                console.log(this.imgSrc)
-                   axios.put('http://localhost:3000/items/update/'+id,{
+                   axios.put('https://api-ecommerce.ariefardi.xyz/update/'+id,{
                        itemName : this.state.detailItem.itemName,
                        price: this.state.detailItem.price,
                        brand : this.state.detailItem.brand,
@@ -265,7 +274,33 @@ export default new Vuex.Store({
         })
     },
     searchQuery ({commit}) {
-      console.log('search query')
+      console.log('search query', this.state.querySearch)
+      let query = this.state.querySearch
+      let items = this.state.items
+      let result = []
+      // console.log(items)
+      if (!query) {
+        axios.get('https://api-ecommerce.ariefardi.xyz/items')
+        .then(({data})=> {
+          commit('setItems', data.items)
+        })
+      }
+      else {
+        for(var i=0;i<items.length;i++) {
+          if (items[i].typeJersey==query) {
+            result.push(items[i])
+          }
+        }
+        commit('setItems', result)
+      }
+    },
+    backHome ({commit}) {
+      console.log('back home')
+      router.push('/')
+      axios.get('https://api-ecommerce.ariefardi.xyz/items')
+      .then(({data})=> {
+        commit('setItems', data.items)
+      })
     }
   }
 })

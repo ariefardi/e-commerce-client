@@ -5,12 +5,13 @@
       color="black"
       dark
     > 
-      <v-toolbar-title> <img src="../assets/logo.png" alt="" width="100"> </v-toolbar-title>
+      <v-toolbar-title> <v-btn @click="backHome" flat style="padding:0" small > <img src="../assets/logo.png" alt="" width="100"> </v-btn> </v-toolbar-title>
       <v-text-field
             placeholder="Jersey, Jacket, World Cup....."
             outline
             color="white"
             class="text-field"
+            v-model="querySearch"
       >
       </v-text-field>
       <v-btn @click="searchQuery" style="padding:0" flat icon ><v-icon>search</v-icon></v-btn>
@@ -46,11 +47,19 @@ export default{
   computed: {
     ...mapState([
       'cart','totalInCart'
-    ])
+    ]),
+    querySearch: {
+      get () {
+        return this.$store.state.querySearch
+      },
+      set (value) {
+        this.$store.commit('setQuerySearch', value)
+      }
+    },
   },
   methods: {
     ...mapActions([
-        'addToCart','incQty','decQty','openModal', 'searchQuery'
+        'addToCart','incQty','decQty','openModal', 'searchQuery', 'backHome'
     ]),
     logout () {
       console.log('clear consolelog')
@@ -78,7 +87,8 @@ export default{
   data () {
     return {
       dialog: false,
-      loginStatus: false
+      loginStatus: false,
+      checkbox: true,
     }
   },
   created () {

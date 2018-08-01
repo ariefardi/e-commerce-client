@@ -1,20 +1,26 @@
 <template>
-<div class="login">
-    <div class="heading">
-        <h2>Sign in</h2>
-      <form action="#">
-        <div class="input-group input-group-lg">
-             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-             <input type="text" class="form-control" placeholder="Username" v-model="username">
-        </div>
-        <div class="input-group input-group-lg">
-          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-          <input type="password" class="form-control" placeholder="Password" v-model="password">
-        </div>
-        <button type="submit" class="float" @click="login">Login</button>
-      </form>
-    </div>
-</div>
+<v-container>
+  <v-layout justify-center fill-height row align-end>
+    <v-card width="500px" style="margin-top:20%">
+      <div class="login">
+          <div class="heading">
+              <h2>Sign in</h2>
+            <form action="#">
+              <div class="input-group input-group-lg">
+                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                  <input  type="text" class="form-control" placeholder="Username" v-model="username">
+              </div>
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input type="password" class="form-control" placeholder="Password" v-model="password">
+              </div>
+              <button type="submit" class="float" @click="login">Login</button>
+            </form>
+          </div>
+      </div>
+    </v-card>
+  </v-layout>
+</v-container>
 </template>
 
 <script>
@@ -29,14 +35,14 @@ export default{
     },
     created ()  {
         if(localStorage.hasOwnProperty('token')){
-            window.location = '/'
+            this.$router.push('/')
         }
     },
     methods: {
         login () {
             console.log('login')
             console.log(this.username,this.password)
-            axios.post('http://localhost:3000/users/login',{
+            axios.post('https://api-ecommerce.ariefardi.xyz/users/login',{
                 username: this.username,
                 password: this.password
             })

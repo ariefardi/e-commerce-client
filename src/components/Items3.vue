@@ -1,26 +1,33 @@
 <template>
-    <v-layout row wrap>
-        <v-flex xs12 sm4 md3 order-md4 order-sm2 v-for="(item, index) in items" :key="index" >
-            <v-card-media>
-                <div class="container">
-                    <img :src="item.imgSrc" alt=""  class="image">
-                    <div class="middle">
-                        <div>
-                            <h4 class="item-name"> <strong> {{item.brand}} {{item.gender}} {{item.itemName}} {{item.released}} {{item.typeJersey}} Jersey </strong> </h4>
-                            <h3 class="price"> <strong>${{item.price}} </strong> </h3>
+<div>
+    <div v-if="!items.length" >
+        <h1>Please refresh your search....</h1>
+    </div>
+    <div v-else >
+        <v-layout row wrap>
+            <v-flex xs12 sm4 md3 order-md4 order-sm2 v-for="(item, index) in items" :key="index" >
+                <v-card-media>
+                    <div class="container">
+                        <img :src="item.imgSrc" alt=""  class="image">
+                        <div class="middle">
+                            <div>
+                                <h4 class="item-name"> <strong> {{item.brand}} {{item.gender}} {{item.itemName}} {{item.released}} {{item.typeJersey}} Jersey </strong> </h4>
+                                <h3 class="price"> <strong>${{item.price}} </strong> </h3>
+                            </div>
                         </div>
+                        <div class="middle-btm">
+                            <v-btn v-if="loginStatus==false" @click="addToCart(index)" flat small icon> <p> <v-icon color="grey lighten-1">shopping_cart</v-icon> </p> </v-btn>
+                            <v-btn v-if="loginStatus==false" @click="openDetailDialog(index)" flat small icon > <p> <v-icon color="grey lighten-1" >fa fa-eye</v-icon> </p> </v-btn>
+                            <v-btn v-if="loginStatus==true" @click="deleteItem(index)"> <v-icon style="padding-bottom:40%">block</v-icon> </v-btn>
+                            <v-btn v-if="loginStatus==true" @click="openDetailDialog(index)"> <v-icon style="padding-bottom:40%">fa fa-edit</v-icon> </v-btn>
+                        </div>
+                        
                     </div>
-                    <div class="middle-btm">
-                        <v-btn v-if="loginStatus==false" @click="addToCart(index)" flat small icon> <p> <v-icon color="grey lighten-1">shopping_cart</v-icon> </p> </v-btn>
-                        <v-btn v-if="loginStatus==false" @click="openDetailDialog(index)" flat small icon > <p> <v-icon color="grey lighten-1" >fa fa-eye</v-icon> </p> </v-btn>
-                        <v-btn v-if="loginStatus==true" @click="deleteItem(index)"> <v-icon style="padding-bottom:40%">block</v-icon> </v-btn>
-                        <v-btn v-if="loginStatus==true" @click="openDetailDialog(index)"> <v-icon style="padding-bottom:40%">fa fa-edit</v-icon> </v-btn>
-                    </div>
-                    
-                </div>
-            </v-card-media>
-        </v-flex>
-    </v-layout>
+                </v-card-media>
+            </v-flex>
+        </v-layout>
+    </div>
+</div>
 </template>
 
 <script>
