@@ -31,6 +31,7 @@
     </v-container>
     </main>
 </v-dialog>
+</v-app>
 </template>
 
 <script>
